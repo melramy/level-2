@@ -1,67 +1,132 @@
 import "./App.css";
 import "./theme.css";
 
-import { useState } from "react";
+import { useReducer } from "react";
+
+const initailData = {
+  name: "Mohamed Elramy",
+  age: 28,
+  startCount: 0,
+  theme: "light",
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE_NAME":
+      return { ...state, name: action.newValue };
+
+    case "CHANGE_AGE":
+      return { ...state, age: action.newValue };
+
+    case "INCREASE":
+      return { ...state, startCount: action.newValue };
+
+    case "CHANGE_THEME":
+      return { ...state, theme: action.newValue };
+
+    default:
+      return state;
+  }
+};
 
 function App() {
-  const [person, setPerson] = useState("Mohamed Elramy");
-  const [age, setage] = useState("28");
-  const [count, setcount] = useState(0);
-  const [theme, settheme] = useState("");
+  const [allData, dispatch] = useReducer(reducer, initailData);
 
-  const changeAge = () => {
-    setage("33");
-  };
   return (
     <>
-      <div className={`App ${theme}`}>
+      <div className={`App ${allData.theme} `}>
+        <button
+          onClick={() => {
+            dispatch({
+              type: "CHANGE_THEME",
+              newValue: allData.theme == "light" ? "dark" : "light",
+            });
+          }}
+          style={{ marginBottom: "44px" }}
+        >
+          لون الخلفية
+        </button>
+        <div
+          onChange={() => {
+            dispatch({
+              type: "CHANGE_THEME",
+              newValue: allData.theme == "light" ? "dark" : "light",
+            });
+          }}
+          style={{ marginBottom: "44px" }}
+          className="btn-container"
+        >
+          <i className="fa fa-sun-o" aria-hidden="true" />
+          <label className="switch btn-color-mode-switch">
+            <input
+              type="checkbox"
+              name="color_mode"
+              id="color_mode"
+              defaultValue={1}
+            />
+            <label
+              htmlFor="color_mode"
+              data-on="Dark"
+              data-off="Light"
+              className="btn-color-mode-switch-inner"
+            />
+          </label>
+          <i className="fa fa-moon-o" aria-hidden="true" />
+        </div>
+
         <div>
           <button
             onClick={() => {
-              settheme("");
+              dispatch({ type: "CHANGE_THEME", newValue: "light" });
             }}
             style={{ marginRight: "26px" }}
           >
-            Light
+            لون أبيض
           </button>
           <button
             onClick={() => {
-              settheme("dark");
+              dispatch({ type: "CHANGE_THEME", newValue: "dark" });
             }}
             style={{ marginRight: "26px" }}
           >
-            Dark
+            لون اسود
           </button>
           <button
             onClick={() => {
-              settheme("grey");
+              dispatch({ type: "CHANGE_THEME", newValue: "grey" });
             }}
             style={{ marginRight: "26px" }}
           >
-            Grey
+            لون رمادي
           </button>
           <button
             onClick={() => {
-              settheme("pink");
+              dispatch({ type: "CHANGE_THEME", newValue: "pink" });
             }}
           >
-            Pink
+            لون بنك
           </button>
         </div>
 
-        <h2  style={{ marginTop: "66px" }} >My Name is {person}</h2>
+        <h2 style={{ marginTop: "66px" }}>My Name is {allData.name} </h2>
         <button
           onClick={() => {
-            setPerson("elramy we bas ");
+            dispatch({ type: "CHANGE_NAME", newValue: "Elramy" });
           }}
         >
-          Change Name
+          تغيير الاسم
         </button>
         <br />
         <br />
 
-        <h2>My Age is {age}</h2>
-        <button onClick={changeAge}>Change Age</button>
+        <h2>My Age is {allData.age} </h2>
+        <button
+          onClick={() => {
+            dispatch({ type: "CHANGE_AGE", newValue: 45 });
+          }}
+        >
+          تغيير العمر
+        </button>
 
         <br />
         <br />
@@ -69,10 +134,10 @@ function App() {
         <br />
         <button
           onClick={() => {
-            setcount(count + 1);
+            dispatch({ type: "INCREASE", newValue: allData.startCount + 1 });
           }}
         >
-          Count is {count}
+          العداد {allData.startCount}{" "}
         </button>
       </div>
     </>
