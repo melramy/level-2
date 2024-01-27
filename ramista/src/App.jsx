@@ -3,6 +3,8 @@ import "./theme.css";
 
 import { useReducer } from "react";
 
+import { Link } from "react-router-dom";
+
 const initailData = {
   name: "Mohamed Elramy",
   age: 28,
@@ -35,6 +37,8 @@ function App() {
   return (
     <>
       <div className={`App ${allData.theme} `}>
+        <Link to="/Page2">Go to Page2</Link>
+
         <button
           onClick={() => {
             dispatch({
@@ -108,10 +112,10 @@ function App() {
           </button>
         </div>
 
-        <h2 style={{ marginTop: "66px" }}>My Name is {allData.name} </h2>
+        <h2 style={{ marginTop: "66px" }}> الاسم : {allData.name} </h2>
         <button
           onClick={() => {
-            dispatch({ type: "CHANGE_NAME", newValue: "Elramy" });
+            dispatch({ type: "CHANGE_NAME", newValue: "الرامي" });
           }}
         >
           تغيير الاسم
@@ -119,7 +123,7 @@ function App() {
         <br />
         <br />
 
-        <h2>My Age is {allData.age} </h2>
+        <h2> العمر : {allData.age} </h2>
         <button
           onClick={() => {
             dispatch({ type: "CHANGE_AGE", newValue: 45 });
