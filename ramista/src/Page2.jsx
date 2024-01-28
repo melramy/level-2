@@ -1,8 +1,15 @@
 
+import {useContext } from "react";
+import ThemeContext from "./context/Datacontext";
+
 const Page2 = () => {
+  const {name} = useContext(ThemeContext);
+
+
   return (
     <div>
-      <h1>السيد على  مخاطر</h1>
+      <h2>السيد على  مخاطر</h2>
+      <h2>my name is {name}</h2>
     </div>
   );
 }
