@@ -3,9 +3,8 @@ import "./theme.css";
 import { useReducer } from "react";
 import { Link } from "react-router-dom";
 
-import {useContext } from "react";
+import { useContext } from "react";
 import DataContext from "./context/Datacontext";
-
 
 // const initailData = {
 //   name: "Mohamed Elramy",
@@ -34,21 +33,19 @@ import DataContext from "./context/Datacontext";
 // };
 
 function App() {
-  const { name,changName} = useContext(DataContext);
+  const { name, theme, toggleTheme, changName, age,changAge,startCount,increaseBy1 } =
+    useContext(DataContext);
 
   // const [allData, dispatch] = useReducer(reducer, initailData);
 
   return (
     <>
-      <div className={`App`}>
+      <div className={`App ${theme}`}>
         <Link to="/Page2">Go to Page2</Link>
 
-        {/* <button
+        <button
           onClick={() => {
-            dispatch({
-              type: "CHANGE_THEME",
-              newValue: allData.theme == "light" ? "dark" : "light",
-            });
+            toggleTheme(theme == "light" ? "dark" : "light");
           }}
           style={{ marginBottom: "44px" }}
         >
@@ -56,10 +53,7 @@ function App() {
         </button>
         <div
           onChange={() => {
-            dispatch({
-              type: "CHANGE_THEME",
-              newValue: allData.theme == "light" ? "dark" : "light",
-            });
+            toggleTheme(theme == "light" ? "dark" : "light");
           }}
           style={{ marginBottom: "44px" }}
           className="btn-container"
@@ -85,7 +79,7 @@ function App() {
         <div>
           <button
             onClick={() => {
-              dispatch({ type: "CHANGE_THEME", newValue: "light" });
+              toggleTheme("light");
             }}
             style={{ marginRight: "26px" }}
           >
@@ -93,7 +87,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              dispatch({ type: "CHANGE_THEME", newValue: "dark" });
+              toggleTheme("dark");
             }}
             style={{ marginRight: "26px" }}
           >
@@ -101,7 +95,7 @@ function App() {
           </button>
           <button
             onClick={() => {
-              dispatch({ type: "CHANGE_THEME", newValue: "grey" });
+              toggleTheme("grey");
             }}
             style={{ marginRight: "26px" }}
           >
@@ -109,24 +103,28 @@ function App() {
           </button>
           <button
             onClick={() => {
-              dispatch({ type: "CHANGE_THEME", newValue: "pink" });
+              toggleTheme("pink");
             }}
           >
             لون بنك
           </button>
-        </div> */}
+        </div>
 
-        <h2 style={{ marginTop: "66px" }}> my name is  {name} </h2>
-        <button onClick={() => {
-          changName()
-        }}>تغيير الاسم</button>
-        {/* <br />
-        <br />
-
-        <h2> العمر : {allData.age} </h2>
+        <h2 style={{ marginTop: "66px" }}> my name is {name} </h2>
         <button
           onClick={() => {
-            dispatch({ type: "CHANGE_AGE", newValue: 45 });
+            changName("elramy mo");
+          }}
+        >
+          تغيير الاسم
+        </button>
+        <br />
+        <br />
+
+        <h2> my Age is {age}</h2>
+        <button
+          onClick={() => {
+            changAge(44);
           }}
         >
           تغيير العمر
@@ -136,13 +134,12 @@ function App() {
         <br />
         <br />
         <br />
+
         <button
-          onClick={() => {
-            dispatch({ type: "INCREASE", newValue: allData.startCount + 1 });
-          }}
-        >
-          العداد {allData.startCount}{" "}
-        </button> */}
+            onClick={() => {
+              increaseBy1(startCount+1);
+            }}
+        >العداد : {startCount}</button>
       </div>
     </>
   );

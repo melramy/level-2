@@ -29,15 +29,27 @@ const reducer = (state, action) => {
 export function DataProvider({ children }) {
   const [firstState, dispatch] = useReducer(reducer, initialData);
 
-  const changName = () => {
-    dispatch({ type: "CHANGE_NAME", newValue: "abo_ramy" });
-  }
+  const changName = (newName) => {
+    dispatch({ type: "CHANGE_NAME", newValue: newName });
+  };
+
+  const toggleTheme = (newTheme) => {
+    dispatch({ type: "CHANGE_THEME", newValue: newTheme });
+  };
+
+  const changAge = (newAge) => {
+    dispatch({ type: "CHANGE_AGE", newValue: newAge });
+  };
+  const increaseBy1  = (newCount) => {
+    dispatch({ type: "INCREASE", newValue: newCount });
+  };
 
   return (
-    <ThemeContexttt.Provider value={{ ...firstState,changName }}>
+    <ThemeContexttt.Provider
+      value={{ ...firstState, changName, toggleTheme, changAge ,increaseBy1}}
+    >
       {children}
     </ThemeContexttt.Provider>
   );
 }
-
 export default ThemeContexttt;
