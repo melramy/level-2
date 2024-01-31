@@ -3,7 +3,14 @@ import Footer from "../comp/Footer";
 import MainContent from "../comp/MainContent";
 import { Helmet } from "react-helmet-async";
 
+
+//  level 2
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext"
+
 const Home = () => {
+
+  const {theme} = useContext(ThemeContext);
   return (
     <>
       <Helmet>
@@ -11,11 +18,13 @@ const Home = () => {
         <meta name="description" content="HOMEEEEEEEEEEEE" />
       </Helmet>
 
-      <Header />
+      <div className={`${theme}`}>
+        <Header />
 
-      <MainContent pageName="HOME Page" />
+        <MainContent pageName="HOME Page" />
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 };

@@ -3,7 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 import "../theme.css";
 
+// level 2
+
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
+
 const Header = () => {
+  const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <div className="myheader">
       <header className="hide-when-mobile ali">
@@ -11,7 +17,14 @@ const Header = () => {
           <Link to="/">c4a.dev</Link>
         </h1>
 
-        <button className="theme-btn" >dark</button>
+        <button
+          onClick={() => {
+            toggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="theme-btn"
+        >
+          {theme}
+        </button>
 
         <ul className="flex">
           <li className="main-list">
