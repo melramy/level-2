@@ -14,22 +14,35 @@ const Header = () => {
     <div className="myheader">
       <header className="hide-when-mobile ali">
         <h1>
-          <Link to="/">c4a.dev</Link>
+          <Link to="/">Elramy.com</Link>
         </h1>
 
-        <button
+        {/* <button
           onClick={() => {
             toggleTheme(theme === "Light" ? "Dark" : "Light");
           }}
           className="theme-btn"
         >
           {theme}
-        </button>
+        </button> */}
+
+        <i
+          onClick={() => {
+            toggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="fa-solid fa-sun"
+        ></i>
+        <i
+          onClick={() => {
+            toggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="fa-solid fa-moon"
+        ></i>
 
         <ul className="flex">
           <li className="main-list">
             <NavLink className="main-link" to="/html">
-              HTML
+              Elramy
             </NavLink>
             <ul className="sub-ul">
               <li>
@@ -45,7 +58,7 @@ const Header = () => {
           </li>
           <li className="main-list">
             <NavLink className="main-link" to="/css">
-              CSS
+              Elsyed
             </NavLink>
             <ul className="sub-ul">
               <li>
@@ -72,7 +85,7 @@ const Header = () => {
           </li>
           <li className="main-list">
             <NavLink className="main-link" to="/javascript">
-              JavaScript
+              Hossam
             </NavLink>
             <ul className="sub-ul sub-of-js">
               <li>
@@ -84,7 +97,7 @@ const Header = () => {
       </header>
 
       <header className="show-when-mobile ali">
-        <h1>c4a.dev</h1>
+        <h1>Elramy.com</h1>
         <label className="absolute" htmlFor="burger">
           <i className="fas fa-bars" />
         </label>

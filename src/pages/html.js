@@ -15,7 +15,7 @@ const Html = () => {
         <meta name="description" content="HTMLLLLLLLLLLLLLLLL" />
       </Helmet>
     <Header />
-    <MainContent pageName="HTML Page"  />   
+    <MainContent pageName="Elramy"  />   
     <Footer />
   </>
   );

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
 <div className="myfooter">
       <footer className="ali   ">
-        Designed and developed by Courses4Arab.com
+        Designed and developed by Mohamed Elramy
         <span>🧡</span>
       </footer>
 </div>

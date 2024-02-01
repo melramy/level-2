@@ -17,7 +17,7 @@ const Javascript = () => {
       </Helmet>
       <Header />
      
-      <MainContent pageName="JAVASCRIPT Page" />
+      <MainContent pageName="HOssam" />
       <Footer />
     </>
   );

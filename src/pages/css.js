@@ -13,7 +13,7 @@ const Css = () => {
 
       <Header />
 
-      <MainContent pageName="CSS Page" />
+      <MainContent pageName="Elsyed" />
 
       <Footer />
     </>
