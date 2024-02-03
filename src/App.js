@@ -8,11 +8,25 @@ import Javascript from "./pages/javascript";
 import { useContext } from "react";
 import ThemeContext from "./context/ThemeContext";
 
+import Signin from './pages/Signin';
+import Signup from './pages/signup';
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     errorElement: <h1>SORROY.........</h1>,
+  },
+
+
+
+  {
+    path: "/Signin",
+    element: <Signin />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 
   {
