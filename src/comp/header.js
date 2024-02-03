@@ -4,14 +4,19 @@ import "./Header.css";
 import "../theme.css";
 
 // level 2
-
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <div className="myheader">
+      {user && <h3>doneeeeeeeeeeeeeeeeeeeeeee</h3>}
+
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">Elramy.com</Link>
@@ -40,20 +45,38 @@ const Header = () => {
         ></i>
 
         <ul className="flex">
+          {!user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/signin">
+                Sign-in
+              </NavLink>
+            </li>
+          )}
 
+          {!user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/signup">
+                Sign-up
+              </NavLink>
+            </li>
+          )}
 
-        <li className="main-list">
-            <NavLink className="main-link" to="/signin">
-              Sign-in
-            </NavLink>
-          
-          </li>
-          <li className="main-list">
-            <NavLink className="main-link" to="/signup">
-              Sign-up
-            </NavLink>
-          
-          </li>
+          {user && (
+            <li
+              onClick={() => {
+                signOut(auth)
+                  .then(() => {
+                    // Sign-out successful.
+                  })
+                  .catch((error) => {
+                    // An error happened.
+                  });
+              }}
+              className="main-list"
+            >
+              <NavLink className="main-link">Sign-out</NavLink>
+            </li>
+          )}
 
           <li className="main-list">
             <NavLink className="main-link" to="/html">
