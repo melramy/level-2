@@ -15,8 +15,6 @@ const Header = () => {
   const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <div className="myheader">
-      {user && <h3>doneeeeeeeeeeeeeeeeeeeeeee</h3>}
-
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">Elramy.com</Link>
@@ -78,33 +76,37 @@ const Header = () => {
             </li>
           )}
 
-          <li className="main-list">
-            <NavLink className="main-link" to="/html">
-              Shadi Mansour
-            </NavLink>
-            <ul className="sub-ul">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">Crash Course</a>
-              </li>
-              <li>
-                <a href="">learn in 1h</a>
-              </li>
-            </ul>
-          </li>
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/html">
+                Shadi Mansour
+              </NavLink>
+              <ul className="sub-ul">
+                <li>
+                  <a href="">Full Course</a>
+                </li>
+                <li>
+                  <a href="">Crash Course</a>
+                </li>
+                <li>
+                  <a href="">learn in 1h</a>
+                </li>
+              </ul>
+            </li>
+          )}
 
-          <li className="main-list">
-            <NavLink className="main-link" to="/javascript">
-              Hossam
-            </NavLink>
-            <ul className="sub-ul sub-of-js">
-              <li>
-                <a href="">coming soon🔥</a>
-              </li>
-            </ul>
-          </li>
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/javascript">
+                Hossam
+              </NavLink>
+              <ul className="sub-ul sub-of-js">
+                <li>
+                  <a href="">coming soon🔥</a>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
       </header>
 

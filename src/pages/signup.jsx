@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -53,7 +55,7 @@ const Signup = () => {
                   // Signed up
                   const user = userCredential.user;
 
-                  console.log("doneeeeeeeeeeeeee");
+                  navigate("/");
                   // ...
                 })
                 .catch((error) => {
@@ -69,6 +71,8 @@ const Signup = () => {
           <p className="account">
             Alrady have an account <Link to="/Signin">Sign-in</Link>
           </p>
+
+          
         </form>
       </main>
       <Footer />
