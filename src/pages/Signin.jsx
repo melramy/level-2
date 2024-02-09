@@ -1,19 +1,69 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
-
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Signin.css";
 
 const Signin = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
+  const [resetPass, setresetPass] = useState("");
   const [password, setpassword] = useState("");
   const [hasError, sethasError] = useState(false);
-  const [firbaseError, setfirbaseError] = useState("");
+  const [firebaseError, setfirebaseError] = useState("");
+  const [showform, setshowform] = useState("");
+  const [showSendEmail, setshowSendEmail] = useState(false);
+
+  const forgotPassword = () => {
+    setshowform("show-Forgot-password ");
+  };
+
+  const SignInBtn = (eo) => {
+    eo.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+
+        sethasError(true);
+
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setfirebaseError("Wrong Email");
+            break;
+
+          case "auth/user-not-found":
+            setfirebaseError("Wrong Email");
+            break;
+
+          case "auth/wrong-password":
+            setfirebaseError("Wrong Password");
+            break;
+
+          case "auth/too-many-requests":
+            setfirebaseError("Too many requests, please try aganin later");
+            break;
+
+          default:
+            setfirebaseError("Please check your email & password");
+            break;
+        }
+      });
+  };
+
   return (
     <>
       <Helmet>
@@ -22,50 +72,88 @@ const Signin = () => {
       <Header />
 
       <main>
+        <form className={`Forgot-password ${showform}`}>
+          <div
+            onClick={() => {
+              setshowform("");
+            }}
+            className="close"
+          >
+            <i className="fa-solid fa-xmark"></i>
+          </div>
+
+          <input
+            onChange={(eo) => {
+              setresetPass(eo.target.value);
+            }}
+            required
+            placeholder=" E-mail : "
+            type="email"
+          />
+          <button
+            onClick={(eo) => {
+              eo.preventDefault();
+
+              sendPasswordResetEmail(auth, resetPass)
+                .then(() => {
+                  setshowSendEmail(true);
+                })
+                .catch((error) => {
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  // ..
+                });
+            }}
+          >
+            Reset Password
+          </button>
+
+          {showSendEmail && (
+            <p className="check-email">
+              Please check your email to reset your passowrd
+            </p>
+          )}
+        </form>
+
         <form>
           <input
             onChange={(eo) => {
               setemail(eo.target.value);
             }}
             required
-            placeholder="E-mail : "
+            placeholder=" E-mail : "
             type="email"
           />
+
           <input
             onChange={(eo) => {
               setpassword(eo.target.value);
             }}
             required
-            placeholder="Password : "
+            placeholder=" Password : "
             type="password"
           />
+
           <button
             onClick={(eo) => {
-              eo.preventDefault();
-              signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user;
-                  console.log(user);
-                  navigate("/");
-                  // ...
-                })
-                .catch((error) => {
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-                  console.log(errorMessage);
-                  sethasError(true);
-                  setfirbaseError(errorCode);
-                });
+              SignInBtn(eo);
             }}
           >
             Sign in
           </button>
           <p className="account">
-            Don't have an account <Link to="/Signup">Sign-up</Link>
+            Don't hava an account <Link to="/signup"> Sign-up</Link>
+          </p>
+          <p
+            onClick={() => {
+              forgotPassword();
+            }}
+            className="forgot-pass"
+          >
+            Forgot passowd?
           </p>
 
-          {hasError && <h2> {firbaseError} </h2>}
+          {hasError && <h2>{firebaseError}</h2>}
         </form>
       </main>
       <Footer />

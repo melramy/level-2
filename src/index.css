@@ -40,6 +40,14 @@ h1 {
   font-size: 25px;
 }
 
+button:active {
+  scale: 1.05;
+  transition: 0.15s;
+}
+button:active {
+  scale: 0.9;
+}
+
 /* level2//////////////////////////// */
 
 form {
@@ -58,29 +66,55 @@ input {
 form button {
   padding: 8px 12px;
   background-color: teal;
-  border-radius: 5px; 
-  color: #000;  
+  border-radius: 5px;
+  color: #000;
   font-size: 16px;
   border: none;
   color: white;
 }
 
-.account{
+.account {
   font-size: 16px;
   margin-top: 12px;
   font-weight: 100;
 }
 
-.account a{
-  text-decoration: underline;
+.account a,
+.pls a {
+  /* text-decoration: underline; */
+  border-bottom: 2px solid;
   font-weight: 600;
   color: #00c6c6;
   font-size: 18px;
 }
-.Light form p{
+
+.Light .pls {
+  color: #111;
+}
+.Light form p {
   color: rgb(0, 0, 0);
 }
-form button:active{
-scale: 0.9;
-border-radius: o;
+form button:active {
+  scale: 0.9;
+  border-radius: o;
 }
+.delete {
+  margin-top: 25px;
+  background-color: #dc3545;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  border-color: #dc3545;
+}
+
+/* /////////////////////// */
+
+
+/* 
+ */
+
+ .fa-heart{
+  font-size:33px ;
+  color:#e14656;
+ }

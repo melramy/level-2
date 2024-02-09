@@ -1,9 +1,6 @@
-
-.myheader .ali{
+.myheader .ali {
   background-color: teal;
 }
-
-
 
 .hide-when-mobile {
   display: flex;
@@ -11,34 +8,30 @@
   align-items: center;
 }
 
+.signout {
+  all: unset;
+  padding: 8px 15px;
+}
 /* ==================
     3. header of mobile
 ===================== */
-.show-when-mobile {
-  display: none;
+
+.logo {
+  animation: logiani 25s infinite;
 }
-
-
-@media (max-width: 800px) {
-  .show-when-mobile {
-    /* display: block; */
+@keyframes logiani {
+  0%,
+  100% {
+    opacity: 0.5;
   }
-  
-  .hide-when-mobile {
-    /* display: none; */
+  50% {
+    letter-spacing: 7px;
+    opacity: 1;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.logo :hover {
+  font-size: x-large;
+}
+ .fa-heart{
+font-size: 11px !important;
+ }

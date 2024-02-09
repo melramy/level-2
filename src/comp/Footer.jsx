@@ -6,7 +6,7 @@ const Footer = () => {
 <div className="myfooter">
       <footer className="ali   ">
         Designed and developed by Mohamed Elramy
-        <span>🧡</span>
+        <span>  <i className="fa-solid fa-heart"></i></span>
       </footer>
 </div>
   );
